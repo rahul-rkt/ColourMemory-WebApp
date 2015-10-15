@@ -1,0 +1,86 @@
+// paddings and margins -------------------------------------------------------
+@function get-trbl($p...)
+    $t: 0
+    $r: 0
+    $b: 0
+    $l: 0
+
+    @if length($p) == 1
+        $t: nth($p, 1)
+        $r: nth($p, 1)
+        $b: nth($p, 1)
+        $l: nth($p, 1)
+
+    @else if length($p) == 2
+        $t: nth($p, 1)
+        $r: nth($p, 2)
+        $b: nth($p, 1)
+        $l: nth($p, 2)
+
+    @else if length($p) == 3
+        $t: nth($p, 1)
+        $r: nth($p, 2)
+        $b: nth($p, 3)
+        $l: nth($p, 2)
+
+    @else if length($p) == 4
+        $t: nth($p, 1)
+        $r: nth($p, 2)
+        $b: nth($p, 3)
+        $l: nth($p, 4)
+
+    @return ($t, $r, $b, $l)
+
+
+@function calc-space-value($type, $value, $screen)
+    $factor: 0
+    $base: 0
+
+    @if $value == m or $value == l
+        @if $value == l
+            @if $type == margin
+                $factor: $margin-factor-large
+                $base: $margin-base
+
+            @else if $type == padding
+                $factor: $padding-factor-large
+                $base: $padding-base
+
+        @else if $value == m
+            @if $type == margin
+                $factor: $margin-factor-medium
+                $base: $margin-base
+
+            @else if $type == padding
+                $factor: $padding-factor-medium
+                $base: $padding-base
+
+        @if $screen == l
+            @return modular-scale($factor, $base, $modular-space-ratio-l)
+
+        @else if $screen == r
+            @return modular-scale($factor, $base, $modular-space-ratio)
+
+        @else if $screen == m
+            @return modular-scale($factor, $base, $modular-space-ratio-m)
+
+        @else if $screen == s
+            @return modular-scale($factor, $base, $modular-space-ratio-s)
+
+    @else if $value == b
+        @if $type == margin
+            @return $margin-base
+
+        @else if $type == padding
+            @return $padding-base
+
+    @else
+        @return $value
+
+
+@function get-padding($value, $screen)
+    @return calc-space-value(padding, $value, $screen)
+
+
+@function get-margin($value, $screen)
+    @return calc-space-value(margin, $value, $screen)

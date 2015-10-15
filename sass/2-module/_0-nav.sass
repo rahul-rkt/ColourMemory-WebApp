@@ -1,0 +1,31 @@
+$nav-height: $padding-base*10 + $font-size-base
+
+
+.nav
+    text-align: center
+
+    #nav
+        display: block
+        position: relative
+        top: 0em
+        z-index: 99
+        @extend %nav-style
+
+
+        #icon
+            display: none
+            padding: 0 $padding-base*2
+            margin: 0
+
+            a
+                padding: 0
+
+                img
+                    display: inline-block
+                    padding: 0
+                    max-width: $font-size-base*2
+                    vertical-align: -$font-size-base/2
+
+    #nav-buffer
+        display: none
+        width: 100%

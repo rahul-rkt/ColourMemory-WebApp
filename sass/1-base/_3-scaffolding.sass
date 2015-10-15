@@ -1,0 +1,91 @@
+// html & body ----------------------------------------------------------------
+html
+    width: 100%
+    max-width: 100%
+    height: 100%
+    max-height: 100%
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+
+
+*, *:before, *:after
+    -webkit-box-sizing: inherit
+    -moz-box-sizing: inherit
+    box-sizing: inherit
+
+body
+    width: 100%
+    max-width: 100%
+    height: 100%
+    max-height: 100%
+    margin: 0em
+    padding: 0em
+    text-align: left
+    +font-feature-settings("kern", "liga", "pnum")
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    text-rendering: optimizelegibility
+    +word-wrap(normal)
+    -webkit-hyphens: none
+    -moz-hyphens: none
+    hyphens: none
+    white-space: pre-line
+    font-family: $font-stack-base
+    font-size: $font-size-base
+    line-height: $line-height-base
+    vertical-align: baseline
+    color: $color-fg
+    background: $color-bg
+    // border-top-width: $border-size*4
+    // border-top-style: solid
+    // border-color: $color-elements-special
+    +user-select(none)
+    overflow-x: hidden
+
+
+// hr -------------------------------------------------------------------------
+hr
+    border: none
+    +scale-margin(m, 0)
+    height: $font-size-base*$line-height-base
+
+    &:before
+        content: "\2731\2731\2731"
+        color: $color-elements
+        text-align: center
+        display: block
+        margin: 0em
+        letter-spacing: $padding-base*2
+
+
+// images ---------------------------------------------------------------------
+img, picture
+    display: block
+    margin: 0em auto
+    max-width: 100%
+    object-fit: contain
+
+
+// browser disclaimer ---------------------------------------------------------
+.browserupgrade
+    @extend %mask-top-style
+
+    h1
+        position: absolute
+        top: 15%
+        left: 15%
+        right: 15%
+        color: $color-elements-alt
+
+        &:after
+            content: none
+
+    p
+        position: absolute
+        bottom: 15%
+        right: 15%
+        left: 15%
+
+.mask
+    @extend %mask-style

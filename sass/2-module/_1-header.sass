@@ -1,0 +1,28 @@
+.header
+    +display(flex)
+    +flex-direction(column)
+    +justify-content(center)
+    +align-content(center)
+    +align-items
+    position: relative
+    height: calc(100vh - #{$nav-height})
+    text-align: center
+    background: $color-fg
+    color: $color-white-bright
+
+    .repo-links
+        +scale-margin(m, 0)
+        button
+            &:nth-child(odd)
+                +scale-margin(0, l, 0, 0)
+
+    +medium-screens
+        img
+            max-width: 70%
+
+    +small-screens
+        img
+            max-width: 90%
+
+        .repo-links
+            display: none

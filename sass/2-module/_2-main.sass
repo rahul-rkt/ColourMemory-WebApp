@@ -1,0 +1,17 @@
+.main
+    position: relative
+    top: $nav-height
+    +user-select(text)
+    +user-select-color
+
+    +large-screens
+        +outer-container(60%)
+
+    +regular-screens
+        +outer-container(70%)
+
+    +medium-screens
+        +outer-container(80%)
+
+    +small-screens
+        +outer-container(90%)

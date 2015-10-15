@@ -1,0 +1,139 @@
+.bg-card
+    background: url(../img/cards/card_bg.gif)
+
+.red-card
+    background: #e63b3b
+
+.green-card
+    background: #4fe63b
+
+.blue-card
+    background: #3b8fe6
+
+.yellow-card
+    background: #e6e03b
+
+.cyan-card
+    background: #3be6c4
+
+.purple-card
+    background: #6f3be6
+
+.magenta-card
+    background: #ff00de
+
+.orange-card
+    background: #ff5a00
+
+
+.implementation
+    .container
+        +display(flex)
+        +flex-direction(column)
+
+        .wrapper
+            +display(flex)
+            +justify-content(space-between)
+            +scale-margin(0, 0, m)
+
+            .left
+                width: 65%
+                height: 100%
+
+                .board
+                    +display(flex)
+                    +flex-direction(row)
+                    +flex-wrap(wrap)
+                    +justify-content(space-around)
+                    +boxify
+
+                    .placeholder
+                        +flex-basis(25%)
+                        +scale-margin(m, 0)
+
+                        .card
+                            width: 80px
+                            height: 100px
+                            margin: 0 auto
+                            border: $border-size solid $color-fg-alt
+                            +border-radius
+                            cursor: pointer
+
+                        +smaller-screens
+                            +flex-basis(50%)
+
+            .right
+                +display(flex)
+                +flex-direction(column)
+                +justify-content(space-between)
+                width: 30%
+                height: 100%
+                +scale-padding(m)
+                +boxify
+
+                .message
+                    height: 50%
+
+                .current-score
+                    @extend %title-style
+                    text-align: center
+
+                .restart
+                    +scale-padding(m)
+
+            +smaller-screens
+                +flex-direction(column)
+
+                .left
+                    +order(2)
+                    width: 100%
+
+                .right
+                    +flex-direction(row)
+                    +align-items(center)
+                    width: 100%
+                    margin-bottom: $margin-base*5
+
+                    .message
+                        display: none
+
+                    .score
+                        width: 50%
+                        margin-bottom: 0
+
+                    .restart
+                        width: 50%
+
+
+#mask
+    @extend %mask-style
+    display: none
+
+
+#score-message
+    @extend %mask-top-style
+    display: none
+    background: $color-bg-alt
+    color: $color-fg
+
+    p label
+        color: $color-fg-alt
+
+    #congrats
+        color: $color-elements-special
+
+    #inputs
+        +scale-margin(l, 0)
+
+    #submit
+        margin-right: $margin-base*5
+
+    #your-rank
+        display: none
+        color: $color-elements-special
+
+    #okay
+        display: none
+
+    #submit-error
+        display: none

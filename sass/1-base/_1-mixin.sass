@@ -1,0 +1,212 @@
+// media queries --------------------------------------------------------------
+=small-screens
+    +max-screen($screen-size-mobile)
+        @content
+
+
+=medium-screens
+    +screen($screen-size-mobile+0.001, $screen-size-small)
+        @content
+
+
+=regular-screens
+    +screen($screen-size-small+0.001, $screen-size-regular)
+        @content
+
+
+=large-screens
+    +min-screen($screen-size-regular+0.001)
+        @content
+
+
+=smaller-screens
+    +small-screens
+        @content
+
+    +medium-screens
+        @content
+
+
+=larger-screens
+    +large-screens
+        @content
+
+    +regular-screens
+        @content
+
+
+// text and links -------------------------------------------------------------
+=scale-text($factor)
+    +large-screens
+        font-size: modular-scale($factor, $ratio: $modular-scale-ratio-l)
+
+    +regular-screens
+        font-size: modular-scale($factor, $ratio: $modular-scale-ratio)
+
+    +medium-screens
+        font-size: modular-scale($factor, $ratio: $modular-scale-ratio-m)
+
+    +small-screens
+        font-size: modular-scale($factor, $ratio: $modular-scale-ratio-s)
+
+
+=link-color($inactive: $color-elements-alt, $active: $color-elements-special)
+    a
+        color: $inactive
+
+        &:hover, &:focus, &:active
+            color: $active
+
+
+// paddings and margins -------------------------------------------------------
+=scale-padding($p...)
+    $trbl: get-trbl($p...)
+    $t: nth($trbl, 1)
+    $r: nth($trbl, 2)
+    $b: nth($trbl, 3)
+    $l: nth($trbl, 4)
+
+    +large-screens
+        $screen: l
+        +padding(get-padding($t, $screen) get-padding($r, $screen) get-padding($b, $screen) get-padding($l, $screen))
+
+    +regular-screens
+        $screen: r
+        +padding(get-padding($t, $screen) get-padding($r, $screen) get-padding($b, $screen) get-padding($l, $screen))
+
+    +medium-screens
+        $screen: m
+        +padding(get-padding($t, $screen) get-padding($r, $screen) get-padding($b, $screen) get-padding($l, $screen))
+
+    +small-screens
+        $screen: s
+        +padding(get-padding($t, $screen) get-padding($r, $screen) get-padding($b, $screen) get-padding($l, $screen))
+
+
+=scale-margin($p...)
+    $trbl: get-trbl($p...)
+    $t: nth($trbl, 1)
+    $r: nth($trbl, 2)
+    $b: nth($trbl, 3)
+    $l: nth($trbl, 4)
+
+    +large-screens
+        $screen: l
+        +margin(get-margin($t, $screen) get-margin($r, $screen) get-margin($b, $screen) get-margin($l, $screen))
+
+    +regular-screens
+        $screen: r
+        +margin(get-margin($t, $screen) get-margin($r, $screen) get-margin($b, $screen) get-margin($l, $screen))
+
+    +medium-screens
+        $screen: m
+        +margin(get-margin($t, $screen) get-margin($r, $screen) get-margin($b, $screen) get-margin($l, $screen))
+
+    +small-screens
+        $screen: s
+        +margin(get-margin($t, $screen) get-margin($r, $screen) get-margin($b, $screen) get-margin($l, $screen))
+
+
+// lines, borders and shadows -------------------------------------------------
+=line-under($color: $color-elements-alt)
+    &:after
+        content: " "
+        display: block
+        border-bottom: $border-size solid $color
+
+
+=line-around($element-dimension, $color: $color-elements-alt)
+    display: inline-block
+    position: relative
+
+    &:before, &:after
+        content: " "
+        position: absolute
+        top: $element-dimension/2
+        border-bottom: $border-size solid $color
+
+        +large-screens
+            width: $line-dimension*1.25
+
+        +regular-screens
+            width: $line-dimension
+
+        +medium-screens
+            width: $line-dimension*0.75
+
+        +small-screens
+            width: $line-dimension*0.5
+
+    &:before
+        right: 100%
+        margin-right: $margin-base*2
+
+    &:after
+        left: 100%
+        margin-left: $margin-base*2
+
+
+=border-radius($radius: $border-radius)
+    +border-top-radius($radius)
+    +border-right-radius($radius)
+    +border-bottom-radius($radius)
+    +border-left-radius($radius)
+
+
+=box-shadow($shadow)
+    @if type-of($shadow) == string
+        $shadow: unquote($shadow)
+
+    -webkit-box-shadow: $shadow
+    -moz-box-shadow: $shadow
+    box-shadow: $shadow
+
+
+=boxify
+    +border-radius
+    +box-shadow(inset 0em $px $em-base rgba($color-elements-alt, 0.25))
+    background: $color-bg-alt
+
+
+// animations, colors, etc ----------------------------------------------------
+=transition-on($property, $duration: $time-duration-short, $timing-func: $timing-func)
+    +transition-property($property)
+    +transition-duration($duration)
+    +transition-timing-function($timing-func)
+
+
+=user-select-color($fg: $color-black, $bg: $color-yellow-bright)
+    ::selection
+        color: $fg
+        background: $bg
+
+    ::-moz-selection
+        color: $fg
+        background: $bg
+
+
+=code-box($alt-style: false)
+    @if $alt-style
+        background: $color-bg-alt
+        color: $color-fg-special
+
+    @else
+        background: $color-black
+        color: $color-white
+
+    border-width: $border-size
+    border-style: solid
+    border-color: $color-elements-alt
+    overflow-x: auto
+    +scale-padding(m)
+    +border-radius
+
+
+=button-color($color: $color-elements-special)
+    background: $color
+
+    &:hover, &:focus
+        background: darken($color, 10%)
+
+    &:active
+        background: darken($color, 20%)

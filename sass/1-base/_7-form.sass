@@ -1,0 +1,72 @@
+// forms ----------------------------------------------------------------------
+fieldset
+    background: $color-bg-alt
+    +scale-margin(0, 0, m)
+    +scale-padding(l)
+    outline: none
+    border: $border-size
+    +border-radius
+
+input, label, select
+    display: block
+
+label
+    font-weight: bold
+    margin-bottom: $margin-base
+
+    &.required:after
+        content: "*"
+
+    abbr
+        display: none
+
+#{$all-text-inputs}, select[multiple=multiple], textarea
+    background: lighten($color-bg, 15%)
+    margin-bottom: $margin-base
+    padding: $padding-base
+    width: 100%
+    border: $border-size
+    border-color: $color-elements-alt
+    +border-radius
+    +box-shadow(inset 0em $px $px*3 rgba($color-elements-alt, 0.06))
+    +transition-on(box-shadow border-color)
+
+    &:hover
+        border-color: darken($color-elements-alt, 15%)
+        +box-shadow("inset 0em #{$px} #{$px*3} #{rgba($color-elements-alt, 0.01)}, 0em 0em #{$px*6} #{adjust-color($color-elements-special, $lightness: -25%, $alpha: -0.7)}")
+
+
+    &:focus
+        border-color: $color-elements-special
+        +box-shadow("inset 0em #{$px} #{$px*3} #{rgba($color-elements-alt, 0.06)}, 0em 0em #{$px*6} #{adjust-color($color-elements-special, $lightness: -5%, $alpha: -0.3)}")
+        outline: none
+
+textarea
+    resize: vertical
+
+input[type="search"]
+    +appearance(none)
+
+input[type="checkbox"], input[type="radio"]
+    display: inline
+    margin-right: $margin-base
+    vertical-align: $px-relative
+
+input[type="file"]
+    +scale-padding(0, 0, m, 0)
+    width: 100%
+
+select
+    max-width: 100%
+    width: auto
+
+
+// buttons --------------------------------------------------------------------
+#{$all-button-inputs}, button, .button
+    @extend %button-style
+
+button.green-button
+    +button-color($color-green)
+
+button.blue-button
+    +button-color($color-cyan-bright)

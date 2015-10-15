@@ -1,0 +1,113 @@
+@charset "utf-8"
+
+
+// vendor ---------------------------------------------------------------------
+@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Playfair+Display:700,700italic|Roboto+Mono:400,400italic,700,700italic)
+@import "0-vendor/master"
+
+
+// colours --------------------------------------------------------------------
+// palette
+$color-white:             #C0C5CE
+$color-white-bright:      #EFF1F5
+
+$color-black:             #2B303B
+$color-black-bright:      #65737E
+
+$color-red:               #BF616A
+$color-red-bright:        #F99157
+
+$color-green:             #7FBF7F
+$color-green-bright:      #A3CE8C
+
+$color-blue:              #8FA1B3
+$color-blue-bright:       #ADD8E6
+
+$color-yellow:            #FFCC66
+$color-yellow-bright:     #EBCB8B
+
+$color-magenta:           #B48EAD
+$color-magenta-bright:    #CC99CC
+
+$color-cyan:              #96B5B4
+$color-cyan-bright:       #6DDCE4
+
+// cardinal
+$color-fg:                $color-black
+$color-fg-alt:            $color-black-bright
+$color-fg-special:        shade($color-magenta, 30%)
+$color-bg:                $color-white-bright
+$color-bg-alt:            darken($color-white-bright, 2.5%)
+$color-elements:          $color-blue
+$color-elements-alt:      $color-white
+$color-elements-special:  $color-red
+$color-link:              $color-red
+
+
+// style directives -----------------------------------------------------------
+// cardinals
+$em-base:                 1em
+$px:                      rem($em-base/16)
+$px-relative:             em($em-base/16)
+
+$modular-scale-ratio-l:   $perfect-fourth
+$modular-scale-ratio:     $major-third
+$modular-scale-ratio-m:   $minor-third
+$modular-scale-ratio-s:   $major-second
+
+$modular-space-ratio-l:   $major-seventh
+$modular-space-ratio:     $minor-seventh
+$modular-space-ratio-m:   $major-sixth
+$modular-space-ratio-s:   $golden
+
+// typography
+$font-size-base:          $em-base
+$font-stack-base:         "Lato", $helvetica
+$line-height-base:        strip-units($em-base)*1.6
+
+$font-stack-title:        "Playfair Display", $font-stack-base
+$line-height-title:       strip-units($em-base)*1.2
+
+$font-stack-code:         "Roboto Mono", Menlo, Monaco, Consolas, $monospace
+$font-size-code:          $font-size-base*0.875
+$line-height-code:        $line-height-base*0.8
+
+// paddings
+$padding-base:            $em-base/4
+$padding-factor-medium:   2
+$padding-factor-large:    4
+
+// margins
+$margin-base:             $em-base/4
+$margin-factor-medium:    3
+$margin-factor-large:     5
+
+// borders
+$border-size:             $px
+$border-radius:           $em-base/4
+
+// time
+$time-duration-short:     0.25s
+$time-duration-long:      0.75s
+$timing-func:             $ease-out-quint
+$timing-func-alt:         $ease-in-out-expo
+
+// media-query thresholds
+$screen-size-regular:     1040*$px
+$screen-size-small:       720*$px
+$screen-size-mobile:      480*$px
+
+// etc
+$line-dimension:          modular-scale(10)
+$logo-dimension:          modular-scale(5)
+$total-nav-items:         3
+$logo-src:                "/assets/img/logo.png"
+$rss-src:                 "/assets/img/rss.png"
+
+
+// colour memory --------------------------------------------------------------
+@import "1-base/master"
+
+@import "2-module/master"
+
+@import "3-section/master"

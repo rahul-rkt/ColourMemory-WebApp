@@ -1,0 +1,116 @@
+h1#documentation Documentation
+
+div.container
+    ul.menu
+        li
+            a(href="#article1") 1. Wireframe
+
+        li
+            a(href="#article2") 2. Front-end Stack
+
+        li
+            a(href="#article3") 3. Back-end Stack
+
+        li
+            a(href="#article4") 4. Automation
+
+
+    div.wrapper
+        div.article.active
+            h3#article1 1. Wireframe
+
+            p The first step of building any application is the protyping or design phase. As the task was specifically laid out for me, I began thinking about what elements I will incorporate as well as the basic wireframe structure to work with.
+
+            p Below are the two guides I drew to help me start buiding this app.
+
+                div.wireframes
+                    a(href="./assets/img/wireframe1.jpg")
+                        img(src="./assets/img/wireframe1-small.jpg")
+
+                    a(href="./assets/img/wireframe2.jpg")
+                        img(src="./assets/img/wireframe2-small.jpg")
+
+            p <b>Resoning:</b> I wanted the documentation and implementation to be cohesive. Hence, delivering not only my task but also the thought process behind the desicions and choices I made along the way.
+
+            p <i>Note:</i> Since the design is relatively simple, I skipped building a full scale prototype for this task.
+
+
+        div.article
+            h3#article2 2. Front-end Stack
+
+            div.stack
+                div.part
+                    h6
+                        abbr(title="HyperText Markup Language") HTML
+                    span Preprocessor:
+                        a(href="http://jade-lang.com/") &nbsp;&nbsp;Jade
+
+                div.part
+                    h6
+                        abbr(title="Cascading Style Sheet") CSS
+                    span Preprocessor:
+                        a(href="http://sass-lang.com/") &nbsp;&nbsp;SASS
+                    br
+                    span External Libraries:
+                        a(href="http://necolas.github.io/normalize.css/") &nbsp;&nbsp;NormalizeCSS,
+                        a(href="http://bourbon.io/") &nbsp;&nbsp;Bourbon,
+                        a(href="http://neat.bourbon.io/") &nbsp;&nbsp;Neat,
+                        a(href="http://github.com/paranoida/sass-mediaqueries") &nbsp;&nbsp;MediaQueries
+
+                div.part
+                    h6
+                        abbr(title="Javascript") JS
+                    span Preprocessor:
+                        a(href="http://coffeescript.org/") &nbsp;&nbsp;CoffeeScript
+                    br
+                    span External Libraries:
+                        a(href="http://jquery.com/") &nbsp;&nbsp;jQuery,
+                        a(href="http://requirejs.org/") &nbsp;&nbsp;RequireJS,
+                        a(href="http://dimsemenov.com/plugins/magnific-popup/") &nbsp;&nbsp;MagnificPopup
+
+            p <b>Resoning:</b> I have used preprocessors for HTML, CSS and JS, rather than using the vanilla technologies. Along with adding features and functionality, they enable to write clean and readable code. It is vey easy to divide them into modules or subsections, thus the code becomes highly maintable, testable and debuggable.
+
+
+        div.article
+            h3#article3 3. Back-end Stack
+
+            div.stack
+                div.part
+                    h6 PHP
+                    span Framework:
+                        a(href="http://laravel.com/") &nbsp;&nbsp;Laravel
+
+                div.part
+                    h6 Database
+                    span MySQL:
+                        a(href="http://www.cleardb.com/") &nbsp;&nbsp;ClearDB
+
+                div.part
+                    h6 Deployment
+                    span Platform:
+                        a(href="http://www.heroku.com/") &nbsp;&nbsp;Heroku
+                    br
+                    span Server:
+                        a(href="http://nginx.org/") &nbsp;&nbsp;Nginx
+                    br
+                    span Protocol:
+                        a(href="http://www.fastcgi.com/") &nbsp;&nbsp;FastCGI
+
+            p <b>Resoning:</b> For building this simple REST API, anything could be used, but I chose this stack to leverage my prior experience.
+
+
+        div.article
+            h3#article4 4. Automation
+
+            div.stack
+                div.part
+                    h6 Building
+                    span Tool:
+                        a(href="http://gulpjs.com/") &nbsp;&nbsp;Gulp
+
+                div.part
+                    h6 Dependency Manager
+                    span Tool:
+                        a(href="https://www.npmjs.com/") &nbsp;&nbsp;NPM
+
+                p <b>Resoning:</b> Gulp has significant advantages over Grunt. Also, NPM was a natural fit for this project since there was no requirement for others like Bower, etc.

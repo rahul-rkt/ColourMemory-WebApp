@@ -1,0 +1,52 @@
+// tables ---------------------------------------------------------------------
+table
+    border-collapse: collapse
+    +scale-margin(0, 0, m)
+    table-layout: fixed
+    width: 100%
+    text-align: left
+
+    tr, td, th
+        vertical-align: middle
+
+    tr:nth-child(even)
+        background: $color-bg-alt
+
+    th
+        font-weight: bold
+        color: $color-fg-alt
+        padding: rem($padding-base*3)
+        border-bottom: $border-size solid $color-elements-alt
+        +scale-text(1)
+
+    td
+        padding: rem($padding-base*3)
+        border-bottom: $border-size solid $color-elements-alt
+        left: -$font-size-base/4
+
+    tfoot
+        background: $color-elements
+        color: lighten($color-bg, 15%)
+        font-weight: bold
+
+
+.table-horizontal, .table-vertical
+    border: $border-size solid $color-elements-alt
+    text-align: center
+
+    td
+        border-bottom: none
+
+
+.table-horizontal
+    th
+        border-bottom: $border-size dashed $color-elements-alt
+
+
+.table-vertical
+    th
+        border-right: $border-size solid $color-elements-alt
+        border-bottom: none
+
+    td
+        border-right: $border-size dashed $color-elements-alt

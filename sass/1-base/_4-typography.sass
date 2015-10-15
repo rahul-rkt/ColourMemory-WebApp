@@ -1,0 +1,63 @@
+// headers --------------------------------------------------------------------
+h1, h2, h3, h4, h5, h6
+    font-family: $font-stack-title
+    font-weight: 700
+    line-height: $line-height-title
+    color: $color-fg-alt
+    margin: 0em 0em $margin-base*2
+
+
+h1
+    +line-under
+    +scale-text(6)
+
+
+h2
+    +scale-text(5)
+
+
+h3
+    +scale-text(4)
+
+
+h4
+    +scale-text(3)
+
+
+h5
+    +scale-text(2)
+
+
+h6
+    font-style: italic
+    +scale-text(1)
+
+
+// paragraphs -----------------------------------------------------------------
+p
+    +scale-margin(0, 0, m)
+
+
+// mark -----------------------------------------------------------------------
+mark
+    background: lighten($color-bg, 15%)
+    color: $color-fg-special
+
+
+// mark -----------------------------------------------------------------------
+abbr[title]
+    text-decoration: none
+
+
+// links ----------------------------------------------------------------------
+a
+    display: inline-block
+    color: $color-link
+    text-decoration: none
+    +transition-on(color)
+
+    &:active, &:focus, &:hover
+        color: darken($color-link, 15%)
+
+    &:active, &:focus
+        outline: none

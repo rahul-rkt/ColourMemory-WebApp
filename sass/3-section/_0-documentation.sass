@@ -1,0 +1,81 @@
+.documentation
+    .container
+        +display(flex)
+        +flex-direction(row)
+        +align-content(center)
+        +align-items
+        +justify-content(space-between)
+
+        .menu
+            width: 35%
+            +scale-margin(0, 0, l, 0)
+
+            li
+                position: relative
+                top: $margin-base*2
+                margin-bottom: $margin-base*4
+                font-style: normal
+                color: $color-fg-alt
+                @extend %date-style
+
+                &:before
+                    content: none
+
+        .wrapper
+            width: 65%
+
+            .article
+                display: none
+
+                .wireframes
+                    +display(flex)
+                    +flex-direction(row)
+                    +justify-content(space-around)
+
+                p:nth-last-child(1)
+                    margin-bottom: 0em
+
+                .stack
+                    .part
+                        +scale-margin(0, 0, m, 0)
+
+                        h6
+                            font-style: normal
+
+            .active
+                display: block
+
+
+        +smaller-screens
+            +flex-direction(column)
+
+            .menu
+                display: inline-flex
+                +flex-wrap(wrap)
+                width: 100%
+
+                li
+                    width: 50%
+                    text-align: center
+                    margin-bottom: 0
+
+                    &:after
+                        content: none
+
+                    a
+                        width: 95%
+
+                    &:nth-child(odd)
+                        border-right: $border-size solid $color-elements-alt
+
+                    &:nth-child(n+3)
+                        border-top: $border-size solid $color-elements-alt
+
+            .wrapper
+                width: 100%
+
+
+// magnific popup style fix
+.mfp-close, .mfp-arrow
+    &:hover, &:focus, &:active
+        background: none

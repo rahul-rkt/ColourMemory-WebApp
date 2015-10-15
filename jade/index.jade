@@ -1,0 +1,50 @@
+doctype html
+html
+    head
+        include ./includes/head.jade
+
+
+    body
+        <!--[if lt IE 10]>
+        <div class="browserupgrade"><h1>Incompatible Browser!</h1><p>You are using an <b>outdated</b> browser.<br/> <a href="http://browsehappy.com/">Click here</a> to upgrade to a mordern browser and continue enjoying the web.</p></div>
+        <div class="mask"></div>
+        <![endif]-->
+        div#mask
+
+
+        header.header#top
+            img(src="./assets/img/logo.png" alt="ColourMemory")
+            h4 by Rahul Thakur
+            div.repo-links
+                button.blue-button(onclick="location.href='http://github.com/rahul-rkt/ColourMemory-WebApp'") Interface Repository
+                button.blue-button(onclick="location.href='http://github.com/rahul-rkt/ColourMemory-WebApp-API'") API Repository
+
+
+        nav.nav
+            ul#nav
+                li
+                    a(href="#documentation") Documentation
+
+                li#icon
+                    a(href="#top")
+                        img(src="./assets/img/icon.png")
+
+                li
+                    a(href="#implementation") Implementation
+
+            div#nav-buffer
+
+
+        main.main
+            section.section.documentation
+                include ./includes/documentation.jade
+
+            section.section.implementation
+                include ./includes/implementation.jade
+
+
+        footer.footer &copy;&nbsp;2015&nbsp;
+            a(href="http://rahulthakur.me", target="_blank") R
+
+
+        script(src="./assets/js/main.min.js")

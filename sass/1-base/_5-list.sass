@@ -1,0 +1,72 @@
+// blockqoutes ----------------------------------------------------------------
+blockquote
+    +scale-margin(0, 0, m)
+
+    p
+        font-style: italic
+        padding-left: $padding-base*8
+        color: $color-fg-special
+        background: url("/assets/img/blockqoute-bar.png") repeat-y
+
+
+// lists ----------------------------------------------------------------------
+ol, ul
+    list-style-type: none
+    padding: 0em
+    +scale-margin(0, 0, m, 0)
+
+ol
+    counter-reset: li
+
+    li
+        list-style: none
+        margin: 0em 0em $margin-base 0em
+
+        &:before
+            content: counter(li)
+            counter-increment: li
+            margin: 0em $margin-base*3 0em $margin-base/2
+            padding: $padding-base $padding-base*2
+            background: $color-elements
+            color: lighten($color-bg, 15%)
+            font-size: modular-scale(-1)
+            font-weight: bold
+            vertical-align: $px-relative
+            +border-radius
+
+    ol, ul
+        +scale-margin(b, 0, b, m)
+
+
+ul
+    li
+        font-style: italic
+        margin-bottom: $margin-base
+
+        &:before
+            content: "\25CF"
+            font-style: normal
+            margin-right: $margin-base*2
+            color: $color-elements
+
+
+dl
+    +scale-margin(0, 0, m)
+
+    dt
+        font-weight: bold
+        text-transform: lowercase
+        color: $color-fg-alt
+        margin: 0em
+        +scale-text(1)
+
+        &:after
+            content: ":"
+
+    dd
+        margin: 0em
+        font-style: italic
+
+        &:before
+            content: " "
+            margin-right: 2rem

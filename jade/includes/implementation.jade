@@ -1,0 +1,35 @@
+h1#implementation Implementation
+
+div.container
+    div.wrapper
+        div.left
+            div.board
+
+        div.right
+            p.message
+
+            h1.current-score
+
+            button.restart Restart&nbsp;&nbsp;&nbsp;↺
+
+    table.table-vertical
+        tbody#high-scores
+
+
+    div#score-message
+        h3#congrats Congratulations, you&nbsp;scored:&nbsp;
+        h3#your-rank Great, you&nbsp;ranked:&nbsp;
+        h3#submit-error Something went wrong, unable to save your score!
+
+        div#inputs
+            p
+                label(for="input-name") Name:
+                input#input-name(type="text")
+
+            p
+                label(for="input-email") Email:
+                input#input-email(type="text")
+
+        button#submit.green-button Submit
+        button#cancel Cancel
+        button#okay.green-button Okay

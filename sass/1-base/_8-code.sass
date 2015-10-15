@@ -1,0 +1,143 @@
+// mathjax --------------------------------------------------------------------
+.MathJax_Display
+    margin: 0em 0em $margin-base*3 !important
+
+.math
+    color: $color-fg-special !important
+    background: $color-bg-alt
+    padding: $padding-base $padding-base*2 !important
+    vertical-align: -$px-relative !important
+    margin: 0em $margin-base !important
+    width: auto !important
+    border-width: $border-size !important
+    border-style: solid !important
+    border-color: $color-elements-alt !important
+    +border-radius
+
+
+// inline code ----------------------------------------------------------------
+p
+    code
+        +code-box(true)
+        font-family: $font-stack-code
+        font-size: $font-size-code
+        padding: $padding-base $padding-base*2 !important
+        vertical-align: $px-relative
+        margin: 0em $margin-base
+
+
+// coderay --------------------------------------------------------------------
+.CodeRay pre
+    font-family: $font-stack-code
+    font-size: $font-size-code
+    +code-box(true)
+
+
+// pygments code block --------------------------------------------------------
+.highlight
+    pre
+        code
+            font-family: $font-stack-code
+            font-size: $font-size-code
+
+        +code-box
+
+        // line numbers
+        .lineno
+            color: $color-black-bright
+            margin-right: $margin-base
+            +user-select(none)
+
+        // comments
+        .c, .cm, .c1, .cs
+            color: $color-black-bright
+            font-style: italic
+
+        // errors
+        .err
+            color: $color-red
+
+        // generics
+        .gd
+            color: $color-red
+        .ge
+            font-style: italic
+        .gh
+            color: $color-white
+            font-weight: bold
+        .gi
+            color: $color-green-bright
+        .gp
+            color: $color-blue
+            font-weight: bold
+        .gs
+            font-weight: bold
+        .gu
+            color: $color-cyan
+            font-weight: bold
+
+        // keywords
+        .k, .kc, .kd, .kp, .kr
+            color: $color-magenta-bright
+        .kn
+            color: $color-cyan
+        .kt
+            color: rgba($color-yellow, 0.9)
+
+        // literals
+        .l
+            color: $color-red-bright
+        .ld
+            color: $color-green-bright
+        .m, .mf, .mh, .mi, .mo, .il
+            color: $color-red-bright
+        .s, .s1, .s2, .sb, .sc, .sh, .ss, .sx
+            color: $color-green
+        .sd, .sh, .si
+            color: rgba($color-yellow-bright, 0.75)
+        .se, .sr
+            color: $color-red-bright
+
+        // names
+        .n, .bp, .nb, .ni, .nl, .py
+            color: $color-white
+        .na, .nx
+            color: $color-blue
+        .nc, .nn
+            color: rgba($color-yellow, 0.9)
+        .no
+            color: $color-blue-bright
+        .nd, .nt
+            color: $color-cyan
+        .ne
+            color: $color-red
+        .nf
+            color: $color-red
+        .nv, .vc, .vg, .vi
+            color: $color-red
+
+        // operators
+        .o, .ow
+            color: $color-cyan
+
+        // punctuations
+        .p
+            color: $color-white
+
+
+// gist -----------------------------------------------------------------------
+.gist
+    margin: 0em 0em $margin-base*3
+
+    .lines, .highlight
+        table-layout: auto !important
+
+    .line-numbers, .line-data
+        text-align: left !important
+        font-size: $font-size-code !important
+
+    .line-pre
+        color: $color-fg !important
+
+    .gist-meta
+        font-size: modular-scale(-1, $font-size-code) !important
