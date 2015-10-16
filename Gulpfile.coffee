@@ -3,6 +3,7 @@ gutil       = require "gulp-util"
 jade        = require "gulp-jade"
 minifyHTML  = require "gulp-html-minifier"
 sass        = require "gulp-sass"
+prefix      = require "gulp-autoprefixer"
 coffee      = require "gulp-coffee"
 clean       = require "gulp-clean"
 run         = require "gulp-run"
@@ -34,6 +35,7 @@ gulp.task "css", ->
     gulp.src "./sass/master.sass"
         .pipe sass()
         .pipe sass(outputStyle: "compressed")
+        .pipe prefix(cascade: false)
         .pipe gulp.dest("./assets/css/")
         .on "error", gutil.log
 

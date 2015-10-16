@@ -28,12 +28,12 @@
 
 .implementation
     .container
-        +display(flex)
-        +flex-direction(column)
+        display: flex
+        flex-direction: column
 
         .wrapper
-            +display(flex)
-            +justify-content(space-between)
+            display: flex
+            justify-content: space-between
             +scale-margin(0, 0, m)
 
             .left
@@ -41,14 +41,14 @@
                 height: 100%
 
                 .board
-                    +display(flex)
-                    +flex-direction(row)
-                    +flex-wrap(wrap)
-                    +justify-content(space-around)
+                    display: flex
+                    flex-direction: row
+                    flex-wrap: wrap
+                    justify-content: space-around
                     +boxify
 
                     .placeholder
-                        +flex-basis(25%)
+                        flex-basis: 25%
                         +scale-margin(m, 0)
 
                         .card
@@ -60,37 +60,34 @@
                             cursor: pointer
 
                         +smaller-screens
-                            +flex-basis(50%)
+                            flex-basis: 50%
 
             .right
-                +display(flex)
-                +flex-direction(column)
-                +justify-content(space-between)
+                display: flex
+                flex-direction: column
+                justify-content: space-between
                 width: 30%
-                height: 100%
                 +scale-padding(m)
                 +boxify
 
-                .message
-                    height: 50%
-
                 .current-score
                     @extend %title-style
+                    margin-top: $margin-base
                     text-align: center
 
                 .restart
                     +scale-padding(m)
 
             +smaller-screens
-                +flex-direction(column)
+                flex-direction: column
 
                 .left
-                    +order(2)
+                    order: 2
                     width: 100%
 
                 .right
-                    +flex-direction(row)
-                    +align-items(center)
+                    flex-direction: row
+                    align-items: center
                     width: 100%
                     margin-bottom: $margin-base*5
 
@@ -103,6 +100,13 @@
 
                     .restart
                         width: 50%
+
+        table
+            table-layout: auto
+
+            +small-screens
+                th:nth-child(3), td:nth-child(3)
+                    display: none
 
 
 #mask

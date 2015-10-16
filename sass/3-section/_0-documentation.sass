@@ -1,10 +1,10 @@
 .documentation
     .container
-        +display(flex)
-        +flex-direction(row)
-        +align-content(center)
-        +align-items
-        +justify-content(space-between)
+        display: flex
+        flex-direction: row
+        align-content: center
+        align-items: stretch
+        justify-content: space-between
 
         .menu
             width: 35%
@@ -28,9 +28,9 @@
                 display: none
 
                 .wireframes
-                    +display(flex)
-                    +flex-direction(row)
-                    +justify-content(space-around)
+                    display: flex
+                    flex-direction: row
+                    justify-content: space-around
 
                 p:nth-last-child(1)
                     margin-bottom: 0em
@@ -47,11 +47,11 @@
 
 
         +smaller-screens
-            +flex-direction(column)
+            flex-direction: column
 
             .menu
                 display: inline-flex
-                +flex-wrap(wrap)
+                flex-wrap: wrap
                 width: 100%
 
                 li
