@@ -45,8 +45,8 @@ define(function() {
     };
 
     ColourMemoryGame.prototype.flipCard = function(card, type) {
-      var flipUnmatchedCards, msg;
-      if (card.hasClass("bg-card")) {
+      var msg;
+      if (card.hasClass("bg-card") && this.selectedCardClass.length < 2) {
         card.addClass("flip");
         setTimeout(function(card) {
           card.removeClass("bg-card");
@@ -68,26 +68,26 @@ define(function() {
               this.newBoard();
             }
           } else {
-            setTimeout(flipUnmatchedCards = function(instance) {
+            setTimeout(function(game) {
               var card1, card2;
-              card1 = $("#" + instance.selectedCardID[0]);
-              card2 = $("#" + instance.selectedCardID[1]);
+              card1 = $("#" + game.selectedCardID[0]);
+              card2 = $("#" + game.selectedCardID[1]);
               card1.addClass("flip-back");
               card2.addClass("flip-back");
-              setTimeout(function(card1, card2, instance) {
-                card1.removeClass("" + instance.selectedCardClass[0]);
-                card2.removeClass("" + instance.selectedCardClass[1]);
+              setTimeout(function(card1, card2, game) {
+                card1.removeClass("" + game.selectedCardClass[0]);
+                card2.removeClass("" + game.selectedCardClass[1]);
                 card1.addClass("bg-card");
                 card2.addClass("bg-card");
-                instance.selectedCardClass = [];
-                instance.selectedCardID = [];
-                $(".current-score").html(--instance.totalGameScore);
-                msg = Math.floor(Math.random() * instance.mismatchMessageArray.length);
-                $(".message").html(instance.mismatchMessageArray[msg]);
+                game.selectedCardClass = [];
+                game.selectedCardID = [];
+                $(".current-score").html(--game.totalGameScore);
+                msg = Math.floor(Math.random() * game.mismatchMessageArray.length);
+                $(".message").html(game.mismatchMessageArray[msg]);
                 card1.removeClass("flip-back");
                 card2.removeClass("flip-back");
-              }, 200, card1, card2, instance);
-            }, 666, this);
+              }, 200, card1, card2, game);
+            }, 400, this);
           }
         }
       } else {

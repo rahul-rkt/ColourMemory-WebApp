@@ -100,17 +100,10 @@ define ->
             return
 
 
-        # # handles animation
-        # animate: ->
-        #
-
-
         # handles performed action on cards
         flipCard: (card, type) ->
-
             # valid click?
-            if(card.hasClass("bg-card"))
-
+            if(card.hasClass("bg-card") && @selectedCardClass.length < 2)
                 # animate
                 card.addClass("flip")
 
@@ -146,12 +139,12 @@ define ->
                             @saveScore()
                             @newBoard()
 
+                    # no match, flip back the cards after timeout
                     else
                         setTimeout(
-                            # flips back unmatched cards
-                            flipUnmatchedCards = (instance) ->
-                                card1 = $("##{instance.selectedCardID[0]}")
-                                card2 = $("##{instance.selectedCardID[1]}")
+                            (game) ->
+                                card1 = $("##{game.selectedCardID[0]}")
+                                card2 = $("##{game.selectedCardID[1]}")
 
                                 # animate
                                 card1.addClass("flip-back")
@@ -159,29 +152,31 @@ define ->
 
                                 # wait for the animation to progress
                                 setTimeout(
-                                    (card1, card2, instance) ->
-                                        card1.removeClass("#{instance.selectedCardClass[0]}")
-                                        card2.removeClass("#{instance.selectedCardClass[1]}")
+                                    (card1, card2, game) ->
+                                        card1.removeClass("#{game.selectedCardClass[0]}")
+                                        card2.removeClass("#{game.selectedCardClass[1]}")
                                         card1.addClass("bg-card")
                                         card2.addClass("bg-card")
 
-                                        instance.selectedCardClass = []
-                                        instance.selectedCardID = []
+                                        game.selectedCardClass = []
+                                        game.selectedCardID = []
 
-                                        $(".current-score").html(--instance.totalGameScore)
+                                        $(".current-score").html(--game.totalGameScore)
 
-                                        msg = Math.floor(Math.random()*(instance.mismatchMessageArray.length))
-                                        $(".message").html(instance.mismatchMessageArray[msg])
+                                        msg = Math.floor(Math.random()*(game.mismatchMessageArray.length))
+                                        $(".message").html(game.mismatchMessageArray[msg])
 
                                         card1.removeClass("flip-back")
                                         card2.removeClass("flip-back")
 
                                         return
                                     200
-                                    card1, card2, instance)
+                                    card1, card2, game)
                                 return
-                            666
+                            400
                             this)
+
+            # invalid click
             else
                 $(".message").html(@invalidClickMessage)
 
