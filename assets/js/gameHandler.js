@@ -9,7 +9,7 @@ define(function(require) {
   "use strict";
   return {
     init: function() {
-      var ColourMemoryGame, bringToFocus, cancelButton, changeFocus, congratsHeader, congratsHeaderDefault, dir, emailField, errorHeader, game, getRankings, highScoreTable, highScoreTableDefault, inputBlock, maskOverlay, messageBlock, mod, nameField, navigateTo, okayButton, performActionOn, postHelper, rankHeader, rankHeaderDefault, selectedCard, submitButton, url;
+      var ColourMemoryGame, bringToFocus, cancelButton, changeFocus, congratsHeader, congratsHeaderDefault, emailField, errorHeader, game, getRankings, highScoreTable, highScoreTableDefault, inputBlock, maskOverlay, messageBlock, mod, nameField, navDirection, navigateTo, okayButton, performActionOn, postHelper, rankHeader, rankHeaderDefault, selectedCard, submitButton, url;
       ColourMemoryGame = require("ColourMemoryGame");
       url = "http://colour-memory-webapp-api.herokuapp.com";
       game = new ColourMemoryGame();
@@ -30,11 +30,19 @@ define(function(require) {
       congratsHeaderDefault = "Congratulations, you&nbsp;scored:&nbsp;";
       rankHeaderDefault = "Great, you&nbsp;ranked:&nbsp;";
       selectedCard = $(":focus");
-      dir = {
-        left: -1,
-        up: -4,
-        right: 1,
-        down: 4
+      navDirection = {
+        largeScreen: {
+          left: -1,
+          up: -4,
+          right: 1,
+          down: 4
+        },
+        smallScreen: {
+          left: -1,
+          up: -2,
+          right: 1,
+          down: 2
+        }
       };
       mod = function(x, y) {
         return ((x % y) + y) % y;
@@ -53,7 +61,7 @@ define(function(require) {
         return selectedCard.focus();
       };
       navigateTo = function(nextCard) {
-        if (!selectedCard.is(':focus')) {
+        if (!selectedCard.is(":focus")) {
           return bringToFocus();
         } else {
           return changeFocus(nextCard);
@@ -65,18 +73,21 @@ define(function(require) {
         return game.flipCard(card, game.baseCardArray[id]);
       };
       $(document).keydown(function(key) {
+        var direction, screenSizeIsLarge;
+        screenSizeIsLarge = $(window).width() > Math.floor(720 * (parseInt($("html").css("font-size")) / 16));
+        direction = screenSizeIsLarge ? navDirection.largeScreen : navDirection.smallScreen;
         switch (key.which) {
           case 37:
-            navigateTo(dir.left);
+            navigateTo(direction.left);
             break;
           case 38:
-            navigateTo(dir.up);
+            navigateTo(direction.up);
             break;
           case 39:
-            navigateTo(dir.right);
+            navigateTo(direction.right);
             break;
           case 40:
-            navigateTo(dir.down);
+            navigateTo(direction.down);
             break;
           case 32:
             performActionOn(selectedCard);

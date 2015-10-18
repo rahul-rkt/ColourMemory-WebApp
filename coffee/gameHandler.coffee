@@ -54,11 +54,19 @@ define (require) ->
 
         # key press defaults
         selectedCard = $(":focus")
-        dir = {
-                left    : -1
-                up      : -4
-                right   :  1
-                down    :  4
+        navDirection = {
+                largeScreen : {
+                    left    : -1
+                    up      : -4
+                    right   :  1
+                    down    :  4
+                }
+                smallScreen : {
+                    left    : -1
+                    up      : -2
+                    right   :  1
+                    down    :  2
+                }
               }
 
 
@@ -84,7 +92,7 @@ define (require) ->
 
         # handle navigation to next card
         navigateTo = (nextCard) ->
-            if not selectedCard.is(':focus')
+            if not selectedCard.is(":focus")
                 bringToFocus()
             else
                 changeFocus(nextCard)
@@ -98,21 +106,25 @@ define (require) ->
 
         # handle key press
         $(document).keydown (key) ->
+            screenSizeIsLarge = $(window).width() > Math.floor(720*(parseInt($("html").css("font-size"))/16))
+            direction = if screenSizeIsLarge then navDirection.largeScreen else navDirection.smallScreen
+
             switch key.which
                 when 37 # left
-                    navigateTo dir.left
+                    navigateTo direction.left
                 when 38 # up
-                    navigateTo dir.up
+                    navigateTo direction.up
                 when 39 # right
-                    navigateTo dir.right
+                    navigateTo direction.right
                 when 40 # down
-                    navigateTo dir.down
+                    navigateTo direction.down
                 when 32 # space
                     performActionOn selectedCard
                 when 13 # enter
                     performActionOn selectedCard
                 else
                     return
+
             key.preventDefault()
             return
 
