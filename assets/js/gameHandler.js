@@ -9,7 +9,7 @@ define(function(require) {
   "use strict";
   return {
     init: function() {
-      var ColourMemoryGame, cancelButton, congratsHeader, congratsHeaderDefault, emailField, errorHeader, game, getRankings, highScoreTable, highScoreTableDefault, inputBlock, maskOverlay, messageBlock, nameField, okayButton, postHelper, rankHeader, rankHeaderDefault, submitButton, url;
+      var ColourMemoryGame, bringToFocus, cancelButton, changeFocus, congratsHeader, congratsHeaderDefault, dir, emailField, errorHeader, game, getRankings, highScoreTable, highScoreTableDefault, inputBlock, maskOverlay, messageBlock, mod, nameField, navigateTo, okayButton, performActionOn, postHelper, rankHeader, rankHeaderDefault, selectedCard, submitButton, url;
       ColourMemoryGame = require("ColourMemoryGame");
       url = "http://colour-memory-webapp-api.herokuapp.com";
       game = new ColourMemoryGame();
@@ -29,11 +29,70 @@ define(function(require) {
       highScoreTableDefault = "<tr> <th>Rank</th> <th>Name</th> <th>Email</th> <th>Score</th> </tr>";
       congratsHeaderDefault = "Congratulations, you&nbsp;scored:&nbsp;";
       rankHeaderDefault = "Great, you&nbsp;ranked:&nbsp;";
-      $(document.body).on("click", ".card", function() {
-        var card, id;
-        card = $(this);
+      selectedCard = $(":focus");
+      dir = {
+        left: -1,
+        up: -4,
+        right: 1,
+        down: 4
+      };
+      mod = function(x, y) {
+        return ((x % y) + y) % y;
+      };
+      bringToFocus = function() {
+        if (!$(":focus").hasClass("card")) {
+          selectedCard = $("#card-0");
+          return selectedCard.focus();
+        }
+      };
+      changeFocus = function(byFactor) {
+        var current, updated;
+        current = parseInt(selectedCard.attr("id").substring(5));
+        updated = mod(current + byFactor, 16);
+        selectedCard = $("#card-" + updated);
+        return selectedCard.focus();
+      };
+      navigateTo = function(nextCard) {
+        if (!selectedCard.is(':focus')) {
+          return bringToFocus();
+        } else {
+          return changeFocus(nextCard);
+        }
+      };
+      performActionOn = function(card) {
+        var id;
         id = card.attr("id").substring(5);
         return game.flipCard(card, game.baseCardArray[id]);
+      };
+      $(document).keydown(function(key) {
+        switch (key.which) {
+          case 37:
+            navigateTo(dir.left);
+            break;
+          case 38:
+            navigateTo(dir.up);
+            break;
+          case 39:
+            navigateTo(dir.right);
+            break;
+          case 40:
+            navigateTo(dir.down);
+            break;
+          case 32:
+            performActionOn(selectedCard);
+            break;
+          case 13:
+            performActionOn(selectedCard);
+            break;
+          default:
+            return;
+        }
+        key.preventDefault();
+      });
+      $(document.body).on("click", ".card", function() {
+        selectedCard = $(this);
+        selectedCard.focus();
+        return performActionOn(selectedCard);
       });
       $(document.body).on("click", ".restart", function() {
         return game.newBoard();

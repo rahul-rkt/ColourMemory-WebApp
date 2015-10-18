@@ -58,6 +58,16 @@
                             border: $border-size solid $color-fg-alt
                             +border-radius
                             cursor: pointer
+                            +transition-on(all)
+
+                            &:hover
+                                border-color: darken($color-fg-alt, 15%)
+                                +box-shadow("inset 0em #{$px} #{$px*3} #{rgba($color-elements-alt, 0.01)}, 0em 0em #{$px*6} #{adjust-color($color-elements-special, $lightness: -25%, $alpha: -0.7)}")
+
+                            &:focus
+                                border-color: $color-elements-special
+                                +box-shadow("inset 0em #{$px} #{$px*3} #{rgba($color-elements-alt, 0.06)}, 0em 0em #{$px*6} #{adjust-color($color-elements-special, $lightness: -5%, $alpha: -0.3)}")
+                                outline: none
 
                         +smaller-screens
                             flex-basis: 50%

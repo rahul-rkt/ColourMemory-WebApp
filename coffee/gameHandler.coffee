@@ -52,11 +52,76 @@ define (require) ->
         rankHeaderDefault = "Great, you&nbsp;ranked:&nbsp;"
 
 
-        # handle click over cards
-        $(document.body).on "click", ".card", ->
-            card = $(this)
+        # key press defaults
+        selectedCard = $(":focus")
+        dir = {
+                left    : -1
+                up      : -4
+                right   :  1
+                down    :  4
+              }
+
+
+        # helper to calculate modulo
+        mod = (x, y) ->
+            ((x % y) + y) % y
+
+
+        # helper to set focus
+        bringToFocus = ->
+            if(!$(":focus").hasClass("card"))
+                selectedCard = $("#card-0")
+                selectedCard.focus()
+
+
+        # helper to change focus
+        changeFocus = (byFactor) ->
+            current = parseInt(selectedCard.attr("id").substring(5))
+            updated = mod((current + byFactor), 16)
+            selectedCard = $("#card-#{updated}")
+            selectedCard.focus()
+
+
+        # handle navigation to next card
+        navigateTo = (nextCard) ->
+            if not selectedCard.is(':focus')
+                bringToFocus()
+            else
+                changeFocus(nextCard)
+
+
+        # takes action on selected card
+        performActionOn = (card) ->
             id = card.attr("id").substring(5)
             game.flipCard(card, game.baseCardArray[id])
+
+
+        # handle key press
+        $(document).keydown (key) ->
+            switch key.which
+                when 37 # left
+                    navigateTo dir.left
+                when 38 # up
+                    navigateTo dir.up
+                when 39 # right
+                    navigateTo dir.right
+                when 40 # down
+                    navigateTo dir.down
+                when 32 # space
+                    performActionOn selectedCard
+                when 13 # enter
+                    performActionOn selectedCard
+                else
+                    return
+            key.preventDefault()
+            return
+
+
+        # handle click over cards
+        $(document.body).on "click", ".card", ->
+            selectedCard = $(this)
+            selectedCard.focus()
+            performActionOn selectedCard
 
 
         # handle click over restart button

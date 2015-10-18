@@ -39,7 +39,7 @@ define(function() {
       output = "";
       $(".board").html(output);
       for (i = k = 0, ref = this.baseCardArray.length; 0 <= ref ? k < ref : k > ref; i = 0 <= ref ? ++k : --k) {
-        output += "<div class=\"placeholder\"> <div id=\"card-" + i + "\" class=\"card bg-card\"></div> </div>";
+        output += "<div class=\"placeholder\"> <div id=\"card-" + i + "\" class=\"card bg-card\" tabindex=\"-1\"></div> </div>";
       }
       $(".board").html(output);
     };

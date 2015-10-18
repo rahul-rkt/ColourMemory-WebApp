@@ -94,7 +94,7 @@ define ->
             $(".board").html(output)
             for i in [0...@baseCardArray.length]
                 output +=   "<div class=\"placeholder\">
-                                <div id=\"card-#{i}\" class=\"card bg-card\"></div>
+                                <div id=\"card-#{i}\" class=\"card bg-card\" tabindex=\"-1\"></div>
                             </div>"
             $(".board").html(output)
             return
