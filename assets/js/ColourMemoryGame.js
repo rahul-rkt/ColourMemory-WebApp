@@ -47,8 +47,12 @@ define(function() {
     ColourMemoryGame.prototype.flipCard = function(card, type) {
       var flipUnmatchedCards, msg;
       if (card.hasClass("bg-card")) {
-        card.removeClass("bg-card");
-        card.addClass("" + type);
+        card.addClass("flip");
+        setTimeout(function(card) {
+          card.removeClass("bg-card");
+          card.addClass("" + type);
+          card.removeClass("flip");
+        }, 200, card);
         this.selectedCardClass.push(type);
         this.selectedCardID.push(card.attr("id"));
         if (this.selectedCardClass.length === 2) {
@@ -65,17 +69,24 @@ define(function() {
             }
           } else {
             setTimeout(flipUnmatchedCards = function(instance) {
-              card = $("#" + instance.selectedCardID[0]);
-              card.removeClass("" + instance.selectedCardClass[0]);
-              card.addClass("bg-card");
-              card = $("#" + instance.selectedCardID[1]);
-              card.removeClass("" + instance.selectedCardClass[1]);
-              card.addClass("bg-card");
-              instance.selectedCardClass = [];
-              instance.selectedCardID = [];
-              $(".current-score").html(--instance.totalGameScore);
-              msg = Math.floor(Math.random() * instance.mismatchMessageArray.length);
-              $(".message").html(instance.mismatchMessageArray[msg]);
+              var card1, card2;
+              card1 = $("#" + instance.selectedCardID[0]);
+              card2 = $("#" + instance.selectedCardID[1]);
+              card1.addClass("flip-back");
+              card2.addClass("flip-back");
+              setTimeout(function(card1, card2, instance) {
+                card1.removeClass("" + instance.selectedCardClass[0]);
+                card2.removeClass("" + instance.selectedCardClass[1]);
+                card1.addClass("bg-card");
+                card2.addClass("bg-card");
+                instance.selectedCardClass = [];
+                instance.selectedCardID = [];
+                $(".current-score").html(--instance.totalGameScore);
+                msg = Math.floor(Math.random() * instance.mismatchMessageArray.length);
+                $(".message").html(instance.mismatchMessageArray[msg]);
+                card1.removeClass("flip-back");
+                card2.removeClass("flip-back");
+              }, 200, card1, card2, instance);
             }, 666, this);
           }
         }

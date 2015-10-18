@@ -69,6 +69,20 @@
                                 +box-shadow("inset 0em #{$px} #{$px*3} #{rgba($color-elements-alt, 0.06)}, 0em 0em #{$px*6} #{adjust-color($color-elements-special, $lightness: -5%, $alpha: -0.3)}")
                                 outline: none
 
+                        .flip
+                            +backface-visibility(visible)
+                            opacity: 1
+                            +transform-origin(50% 50%)
+                            +transform(rotate(0deg) rotateX(0deg) rotateY(180deg) rotateZ(0deg))
+                            +transition-on(all, $time-duration-long*2)
+
+                        .flip-back
+                            +backface-visibility(visible)
+                            opacity: 1
+                            +transform-origin(50% 50%)
+                            +transform(rotate(0deg) rotateX(0deg) rotateY(-180deg) rotateZ(0deg))
+                            +transition-on(all, $time-duration-long*2)
+
                         +smaller-screens
                             flex-basis: 50%
 

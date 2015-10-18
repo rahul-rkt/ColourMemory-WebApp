@@ -100,13 +100,30 @@ define ->
             return
 
 
-        # handles click event on cards and takes proper action
+        # # handles animation
+        # animate: ->
+        #
+
+
+        # handles performed action on cards
         flipCard: (card, type) ->
 
             # valid click?
             if(card.hasClass("bg-card"))
-                card.removeClass("bg-card")
-                card.addClass("#{type}")
+
+                # animate
+                card.addClass("flip")
+
+                # wait for the animation to progress
+                setTimeout(
+                    (card) ->
+                        card.removeClass("bg-card")
+                        card.addClass("#{type}")
+                        card.removeClass("flip")
+                        return
+                    200
+                    card)
+
                 @selectedCardClass.push type
                 @selectedCardID.push card.attr("id")
 
@@ -133,22 +150,35 @@ define ->
                         setTimeout(
                             # flips back unmatched cards
                             flipUnmatchedCards = (instance) ->
-                                card = $("##{instance.selectedCardID[0]}")
-                                card.removeClass("#{instance.selectedCardClass[0]}")
-                                card.addClass("bg-card")
+                                card1 = $("##{instance.selectedCardID[0]}")
+                                card2 = $("##{instance.selectedCardID[1]}")
 
-                                card = $("##{instance.selectedCardID[1]}")
-                                card.removeClass("#{instance.selectedCardClass[1]}")
-                                card.addClass("bg-card")
+                                # animate
+                                card1.addClass("flip-back")
+                                card2.addClass("flip-back")
 
-                                instance.selectedCardClass = []
-                                instance.selectedCardID = []
+                                # wait for the animation to progress
+                                setTimeout(
+                                    (card1, card2, instance) ->
+                                        card1.removeClass("#{instance.selectedCardClass[0]}")
+                                        card2.removeClass("#{instance.selectedCardClass[1]}")
+                                        card1.addClass("bg-card")
+                                        card2.addClass("bg-card")
 
-                                $(".current-score").html(--instance.totalGameScore)
+                                        instance.selectedCardClass = []
+                                        instance.selectedCardID = []
 
-                                msg = Math.floor(Math.random()*(instance.mismatchMessageArray.length))
-                                $(".message").html(instance.mismatchMessageArray[msg])
+                                        $(".current-score").html(--instance.totalGameScore)
 
+                                        msg = Math.floor(Math.random()*(instance.mismatchMessageArray.length))
+                                        $(".message").html(instance.mismatchMessageArray[msg])
+
+                                        card1.removeClass("flip-back")
+                                        card2.removeClass("flip-back")
+
+                                        return
+                                    200
+                                    card1, card2, instance)
                                 return
                             666
                             this)
